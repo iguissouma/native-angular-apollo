@@ -9,17 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var nativescript_ng2_magic_1 = require('nativescript-ng2-magic');
+var angular2_apollo_1 = require('angular2-apollo');
+// We need this to parse graphql string
+var graphql_tag_1 = require('graphql-tag');
 var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'app works!';
+    // Inject Angular2Apollo service
+    function AppComponent(apollo) {
+        this.apollo = apollo;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        // Query users data with observable variables
+        this.users = this.apollo.watchQuery({
+            query: (_a = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], _a.raw = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], graphql_tag_1.default(_a)),
+            variables: {
+                name: '',
+            },
+        })
+            .map(function (result) { return result.data.users; });
+        var _a;
+    };
+    AppComponent.prototype.ngAfterViewInit = function () {
+        // Set nameFilter to null after NgOnInit happend and the view has been initated
+    };
     AppComponent = __decorate([
         nativescript_ng2_magic_1.Component({
             selector: 'app-root',
-            templateUrl: './app/app.component.html',
-            styleUrls: ['./app/app.component.css']
+            templateUrl: 'app.component.html',
+            styleUrls: ['app.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [angular2_apollo_1.Angular2Apollo])
     ], AppComponent);
     return AppComponent;
 }());

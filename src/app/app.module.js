@@ -12,7 +12,9 @@ var platform_browser_1 = require('@angular/platform-browser');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
+var angular2_apollo_1 = require('angular2-apollo');
 var app_component_1 = require('./app.component');
+var client_1 = require('./client');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +26,9 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                http_1.HttpModule
+                http_1.HttpModule,
+                // Define the default ApolloClient
+                angular2_apollo_1.ApolloModule.withClient(client_1.client),
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
