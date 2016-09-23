@@ -18,14 +18,19 @@ var AppComponent = (function () {
         this.apollo = apollo;
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         // Query users data with observable variables
-        this.users = this.apollo.watchQuery({
+        this.apollo.watchQuery({
             query: (_a = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], _a.raw = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], graphql_tag_1.default(_a)),
             variables: {
                 name: '',
             },
         })
-            .map(function (result) { return result.data.users; });
+            .subscribe(function (_a) {
+            var data = _a.data;
+            _this.users = data.users;
+        });
+        this.title = 'List of users';
         var _a;
     };
     AppComponent.prototype.ngAfterViewInit = function () {
@@ -34,8 +39,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         nativescript_ng2_magic_1.Component({
             selector: 'app-root',
-            templateUrl: 'app.component.html',
-            styleUrls: ['app.component.css']
+            templateUrl: './app/app.component.html',
+            styleUrls: ['./app/app.component.css']
         }), 
         __metadata('design:paramtypes', [angular2_apollo_1.Angular2Apollo])
     ], AppComponent);
