@@ -14,9 +14,10 @@ import gql from 'graphql-tag';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   // Observable with GraphQL result
-  public users: ApolloQueryObservable<any>;
+  public users: any;
   // Observable variable of the graphql query
   private apollo: Angular2Apollo;
+  private title: string;
 
   // Inject Angular2Apollo service
   constructor(apollo: Angular2Apollo) {
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       .subscribe(({data}) => {
         this.users = data.users;
       });
-
+     this.title = 'List of users'
   }
 
   public ngAfterViewInit() {
