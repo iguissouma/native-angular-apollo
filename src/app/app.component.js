@@ -16,13 +16,11 @@ var client_1 = require("./client");
 var AppComponent = (function () {
     // Inject Angular2Apollo service
     function AppComponent() {
-        console.log('constructor try to initialise apollo');
-        console.log('this=' + this);
-        console.log('this.apollo=' + this.apollo);
+        //Inject Angular2Apollo service is null when using injectin, init manually
+        this.apollo = new angular2_apollo_1.Angular2Apollo(client_1.client);
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.apollo = new angular2_apollo_1.Angular2Apollo(client_1.client);
         // Query users data with observable variables
         this.apollo.watchQuery({
             query: (_a = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], _a.raw = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], graphql_tag_1.default(_a)),

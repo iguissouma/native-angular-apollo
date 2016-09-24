@@ -23,14 +23,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   // Inject Angular2Apollo service
   constructor() {
-
-    console.log('constructor try to initialise apollo');
-    console.log('this='+this);
-    console.log('this.apollo='+this.apollo);
+    //Inject Angular2Apollo service is null when using injectin, init manually
+    this.apollo = new Angular2Apollo(client);
   }
 
   public ngOnInit() {
-    this.apollo = new Angular2Apollo(client);
 
     // Query users data with observable variables
     this.apollo.watchQuery({
