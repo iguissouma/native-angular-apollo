@@ -41,8 +41,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         nativescript_ng2_magic_1.Component({
             selector: 'app-root',
-            templateUrl: 'app.component.html',
-            styleUrls: ['app.component.css']
+            templateUrl: './app/app.component.html',
+            styleUrls: ['./app/app.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
