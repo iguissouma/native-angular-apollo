@@ -12,6 +12,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var platform_1 = require("nativescript-angular/platform");
 var core_1 = require("@angular/core");
 var app_component_1 = require("./app/app.component");
+var app_1 = require("./app");
+var angular2_apollo_1 = require("angular2-apollo");
 var AppComponentModule = (function () {
     function AppComponentModule() {
     }
@@ -19,7 +21,11 @@ var AppComponentModule = (function () {
         core_1.NgModule({
             declarations: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],
-            imports: [platform_1.NativeScriptModule],
+            imports: [
+                platform_1.NativeScriptModule,
+                // Define the default ApolloClient
+                angular2_apollo_1.ApolloModule.withClient(app_1.client),
+            ],
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponentModule);
