@@ -10,6 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // this import should be first in order to load some required settings (like globals and reflect-metadata)
 var platform_1 = require("nativescript-angular/platform");
+//process" doesn't exist as part of NativeScript.
+//You can pollyfill it by adding to your app.js (or main.ts) `global.process =  {env: {}};`
+//and that will make process and its env work globally in the app as a empty variable.
+global.process = { env: {} };
 var core_1 = require("@angular/core");
 var app_component_1 = require("./app/app.component");
 var app_1 = require("./app");
