@@ -1,5 +1,12 @@
-<StackLayout>
-  <Label [text]="title" textWrap="true" ></Label>
-</StackLayout>
+<GridLayout rows="*">
+  <ListView [items]="users">
+    <template let-item="item" let-i="index" let-third="third">
+      <StackLayout [class.third]="third">
+        <Label [text]='"index: " + i'></Label>
+        <Label [text]='"[" + item.firstName +"] " + item.lastName'></Label>
+      </StackLayout>
+    </template>
+  </ListView>
+</GridLayout>
 
 

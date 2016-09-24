@@ -12,18 +12,22 @@ var nativescript_ng2_magic_1 = require('nativescript-ng2-magic');
 var angular2_apollo_1 = require('angular2-apollo');
 // We need this to parse graphql string
 var graphql_tag_1 = require('graphql-tag');
+var client_1 = require("./client");
 var AppComponent = (function () {
     // Inject Angular2Apollo service
-    function AppComponent(apollo) {
-        this.apollo = apollo;
+    function AppComponent() {
+        console.log('constructor try to initialise apollo');
+        console.log('this=' + this);
+        console.log('this.apollo=' + this.apollo);
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.apollo = new angular2_apollo_1.Angular2Apollo(client_1.client);
         // Query users data with observable variables
         this.apollo.watchQuery({
             query: (_a = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], _a.raw = ["\n        query getUsers($name: String) {\n          users(name: $name) {\n            firstName\n            lastName\n            emails {\n              address\n              verified\n            }\n          }\n        }\n      "], graphql_tag_1.default(_a)),
             variables: {
-                name: '',
+                name: 'hello',
             },
         })
             .subscribe(function (_a) {
@@ -42,7 +46,7 @@ var AppComponent = (function () {
             templateUrl: './app/app.component.html',
             styleUrls: ['./app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [angular2_apollo_1.Angular2Apollo])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());

@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 
 // We need this to parse graphql string
 import gql from 'graphql-tag';
+import {client} from "./client";
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,16 @@ export class AppComponent implements OnInit, AfterViewInit {
   private title: string;
 
   // Inject Angular2Apollo service
-  constructor(apollo: Angular2Apollo) {
-    this.apollo = apollo;
+  constructor() {
+
+    console.log('constructor try to initialise apollo');
+    console.log('this='+this);
+    console.log('this.apollo='+this.apollo);
   }
 
   public ngOnInit() {
+    this.apollo = new Angular2Apollo(client);
+
     // Query users data with observable variables
     this.apollo.watchQuery({
       query: gql`
@@ -41,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       `,
       variables: {
-        name: '',
+        name: 'hello',
       },
     })
     // Return only users, not the whole ApolloQueryResult
