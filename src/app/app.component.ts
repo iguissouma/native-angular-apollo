@@ -10,9 +10,7 @@ import {client} from "./client";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app/app.component.html',
-  styleUrls: ['./app/app.component.css']
-
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
   // Observable with GraphQL result
